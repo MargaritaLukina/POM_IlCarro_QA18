@@ -15,7 +15,7 @@ public class BaseScreen {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
     public void type(MobileElement element, String text){
-    pause(15000);
+      //pause(15000);
         element.click();
         element.clear();
         element.sendKeys(text);
@@ -32,6 +32,18 @@ public class BaseScreen {
         new WebDriverWait(driver, time).until(
                 ExpectedConditions.visibilityOf(element)
         );
+    }
+    public void present(MobileElement element, int time){
+        new WebDriverWait(driver,time)
+                .until(ExpectedConditions.visibilityOf(element));
+    }
+    public boolean isDisplayedWithExp(MobileElement element,int time){
+        try {
+            present(element, time);
+            return element.isDisplayed();
+        }catch (Exception ex){
+            return false;
+        }
     }
 
 }

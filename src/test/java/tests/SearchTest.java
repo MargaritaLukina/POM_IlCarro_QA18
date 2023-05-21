@@ -15,5 +15,6 @@ public class SearchTest extends AppiumConfig {
         Assert.assertEquals(location,"Tel Aviv");
 
 
+
     }
 }
