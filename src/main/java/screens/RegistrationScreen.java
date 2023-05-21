@@ -44,8 +44,9 @@ public class RegistrationScreen extends BaseScreen{
         return this;
     }
 public RegistrationScreen registration(User user){
+    present(txtRegName, 5);
     type(txtRegName,user.getName());
-   type(txtRegLastName, user.getLastname());
+    type(txtRegLastName, user.getLastname());
     type(txtRegEmail, user.getEmail());
     type(txtRegPassword,user.getPassword());
     return this;

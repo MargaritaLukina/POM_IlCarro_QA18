@@ -2,6 +2,7 @@ package tests;
 
 import config.AppiumConfig;
 import models.User;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import screens.SearchScreen;
 
@@ -9,12 +10,14 @@ public class RegistrationTest extends AppiumConfig {
 
     @Test
     public void regPositive(){
-        new SearchScreen(driver)
+        Assert.assertTrue(new SearchScreen(driver)
                 .openMoreOptions()
                 .openRegForm()
-                .registration(User.builder().name("noa1").lastname("noa").email("noa1@gmail.com").password("Nnoa12345$").build())
+                .registration(User.builder().name("noa3").lastname("noa").email("noa3@gmail.com").password("Nnoa12345$").build())
                 .clickchkBox()
-                .clickReg();
+                .clickReg()
+                .isSearchScreenDisplayed());
+
 
     }
 }

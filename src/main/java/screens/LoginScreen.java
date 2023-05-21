@@ -2,6 +2,7 @@ package screens;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import models.User;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
@@ -21,6 +22,15 @@ public class LoginScreen extends BaseScreen{
     MobileElement messageText;
     @FindBy(id = "android:id/button1")
     MobileElement okButton;
+
+    public LoginScreen fillLoginForm(User user) {
+        present(emailEditText, 5);
+        type(emailEditText, user.getEmail());
+        type(passwordEditText, user.getPassword());
+        return this;
+    }
+
+
     public LoginScreen fillEmail(String email) {
         present(emailEditText, 5);
         type(emailEditText, email);
@@ -39,8 +49,11 @@ public class LoginScreen extends BaseScreen{
         return new SearchScreen(driver);
     }
 
+
+
     public LoginScreen submitLoginNegative() {
-        driver.hideKeyboard();
+        //driver.hideKeyboard();
+        present(yallaButton, 5);
         yallaButton.click();
         return this;
     }

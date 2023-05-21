@@ -13,6 +13,14 @@ public class SearchScreen extends BaseScreen{
 @FindBy(id="com.telran.ilcarro:id/editLocation")
     MobileElement locationEditText;
 
+    @FindBy(id = "com.telran.ilcarro:id/editFrom")
+    MobileElement fromText;
+
+    @FindBy(id = "com.telran.ilcarro:id/editTo")
+    MobileElement toText;
+    @FindBy(id="com.telran.ilcarro:id/searchBtn")
+    MobileElement searchBtn;
+
     @FindBy(how = How.XPATH,using = "//*[@text='Registration']")
     MobileElement registrationButton;
 
@@ -27,6 +35,14 @@ public class SearchScreen extends BaseScreen{
 
     @FindBy(how = How.XPATH,using = "//*[@text='Logout']")
     MobileElement logoutButton;
+
+    @FindBy (xpath ="//*[@text='My Cars']" )
+    MobileElement myCarsButton;
+
+    public MyCarsScreen openMyCarsList(){
+        myCarsButton.click();
+        return new MyCarsScreen(driver);
+    }
 
     public SearchScreen openMoreOptions() {
 
@@ -63,14 +79,25 @@ public class SearchScreen extends BaseScreen{
         return this;
     }
 
-    public SearchScreen fillLocation(){
+    public ResultScreen fillLocation(){
         isDisplayedWithExp(locationEditText, 15);
         driver.hideKeyboard();
         locationEditText.click();
         locationEditText.clear();
         type(locationEditText,"Tel Aviv");
-        return this;
+       // type(fromText, "23/05/2023");
+       // fromText.click();
+        fromText.sendKeys("23/05/2023");
+        //type(toText, "24/05/2023");
+        toText.sendKeys("24/05/2023");
+        searchBtn.click();
+
+        return new ResultScreen(driver);
     }
+
+
+
+
     public String getLocation(){
         return  locationEditText.getText();
     }

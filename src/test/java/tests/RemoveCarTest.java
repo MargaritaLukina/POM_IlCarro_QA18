@@ -1,13 +1,11 @@
 package tests;
-
 import config.AppiumConfig;
 import models.User;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import screens.SearchScreen;
 
-public class SearchTest extends AppiumConfig {
+public class RemoveCarTest extends AppiumConfig {
     @BeforeMethod
     public void preCondition(){
         new SearchScreen(driver)
@@ -18,12 +16,11 @@ public class SearchTest extends AppiumConfig {
     }
 
     @Test
-    public void searchCar(){
-
-       Assert.assertTrue(new SearchScreen(driver).fillLocation().isResultScreenDisplayed());
-
-
-
-
+    public void removeCarSuccessTest(){
+        new SearchScreen(driver)
+                .openMoreOptions()
+                .openMyCarsList()
+                .removeCar();
     }
+
 }
